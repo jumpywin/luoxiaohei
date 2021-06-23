@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="group._204.luoxiaohei.dao.CharacterDao">
+    <insert id="add" parameterType="group._204.luoxiaohei.model.Character">
+        insert into `character`(id, name, racial, note)
+        values (#{id}, #{name}, #{racial}, #{note});
+    </insert>
+    <delete id="delete" parameterType="Integer">
+        delete
+        from `character`
+        where id = #{id};
+    </delete>
+    <select id="getSingle" resultType="group._204.luoxiaohei.model.Character">
+        select id, name, racial, note
+        from `character`
+        where id = #{id};
+    </select>
+    <select id="getAll" resultType="group._204.luoxiaohei.model.Character">
+        select id, name, racial, note
+        from `character`
+    </select>
+
+    <select id="getNote" resultType="String">
+        select note
+        from `character`
+        where id = #{id};
+    </select>
+
+    <update id="update" parameterType="group._204.luoxiaohei.model.Character">
+        update `character`
+        set name=#{name},
+            note=#{note}
+        where id = #{id};
+    </update>
+
+    <select id="getAbility" resultType="group._204.luoxiaohei.model.Ability">
+        select a.id,a.name,a.note
+        from ability a
+                 join `character-ability` `c-a` on a.id = `c-a`.ability_id
+                 join `character` c on c.id = `c-a`.character_id
+        where c.id=#{id}
+    </select>
+
+</mapper>

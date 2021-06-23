@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  datasource:
+    url: jdbc:mysql://183.134.73.101:3306/luoxiaohei?allowMultiQueries=true&serverTimezone=Asia/Shanghai
+    type: com.zaxxer.hikari.HikariDataSource
+    username: root
+    password: 12344321
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      connection-timeout: 6000
+      maximum-pool-size: 16
+      max-lifetime: 30000
+
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: on
+  mapper-locations: classpath:mybatis/mapper/*.xml
