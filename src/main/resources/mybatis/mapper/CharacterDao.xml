@@ -6,16 +6,19 @@
         insert into `character`(id, name, racial, note)
         values (#{id}, #{name}, #{racial}, #{note});
     </insert>
+
     <delete id="delete" parameterType="Integer">
         delete
         from `character`
         where id = #{id};
     </delete>
+
     <select id="getSingle" resultType="group._204.luoxiaohei.model.Character">
         select id, name, racial, note
         from `character`
         where id = #{id};
     </select>
+
     <select id="getAll" resultType="group._204.luoxiaohei.model.Character">
         select id, name, racial, note
         from `character`
@@ -35,11 +38,17 @@
     </update>
 
     <select id="getAbility" resultType="group._204.luoxiaohei.model.Ability">
-        select a.id,a.name,a.note
+        select a.id, a.name, a.note
         from ability a
                  join `character-ability` `c-a` on a.id = `c-a`.ability_id
                  join `character` c on c.id = `c-a`.character_id
-        where c.id=#{id}
+        where c.id = #{id}
     </select>
-
+    <select id="getView" resultType="Map">
+        select c.name,c.note,r.name,group_concat(a.name) 'abilities',group_concat(a.note) 'ability_notes'
+        from `character` c
+                left join `character-ability` `c-a` on c.id = `c-a`.character_id
+                left join ability a on a.id = `c-a`.ability_id join racial r on r.id = c.racial
+        group by c.id,c.name, c.note, r.name
+    </select>
 </mapper>

@@ -6,6 +6,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 import group._204.luoxiaohei.model.Character;
 
@@ -43,4 +44,6 @@ public class CharacterService {
     public List<Ability> getAbility(Integer id){
         return characterDao.getAbility(id);
     }
+
+    public List<Map<String,String>> getView(){return characterDao.getView();}
 }

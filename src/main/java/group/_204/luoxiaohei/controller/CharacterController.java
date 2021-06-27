@@ -1,7 +1,10 @@
 package group._204.luoxiaohei.controller;
 
+import group._204.luoxiaohei.LuoxiaoheiApplication;
 import group._204.luoxiaohei.business.Hello;
 import group._204.luoxiaohei.service.CharacterService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,8 @@ import javax.annotation.Resource;
 @RestController
 @RequestMapping("character")
 public class CharacterController {
+
+    static Logger logger = LoggerFactory.getLogger(LuoxiaoheiApplication.class);
 
     @Resource
     private CharacterService characterService;
@@ -24,8 +29,13 @@ public class CharacterController {
         return new ResponseEntity(characterService.getAll(), HttpStatus.OK);
     }
 
-    public ResponseEntity getView(){
-        characterService.getAll()
+    /**
+     *
+     * @return 全部角色的全部信息，应该是很费时的操作吧
+     */
+    @GetMapping("view")
+    public ResponseEntity getView() {
+        return new ResponseEntity(characterService.getView(), HttpStatus.OK);
     }
 
     @GetMapping(path = "{id}")

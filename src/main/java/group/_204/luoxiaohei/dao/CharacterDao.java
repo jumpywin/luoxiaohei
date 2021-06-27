@@ -5,6 +5,7 @@ import group._204.luoxiaohei.model.Character;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 @Mapper
 public interface CharacterDao {
@@ -21,4 +22,6 @@ public interface CharacterDao {
     void update(Character character);
 
     List<Ability> getAbility(Integer id);
+
+    List<Map<String,String>> getView();
 }

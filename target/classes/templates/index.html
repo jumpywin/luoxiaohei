@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <title>好耶</title>
+    <script src="/js/vue.js"></script>
+    <script src="/js/index.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/root.css"/>
+</head>
+<body>
+
+<div id="app">
+    <el-container style="border: 1px solid #eee">
+
+        <el-header style="text-align: right; font-size: 12px">
+            <div style="text-align: center;font-size:28px">狗东西钢板录的数据</div>
+            <el-dropdown>
+                <i class="el-icon-setting" style="margin-right: 15px"></i>
+                <el-dropdown-menu slot="dropdown">
+                    <el-dropdown-item>查看</el-dropdown-item>
+                    <el-dropdown-item>新增</el-dropdown-item>
+                    <el-dropdown-item>删除</el-dropdown-item>
+                </el-dropdown-menu>
+            </el-dropdown>
+            <span style="font-size:18px">未登录</span>
+        </el-header>
+
+        <el-main>
+            <div>
+                <#list characterlist as character>
+                <pre>名字啊: ${character.name}&#09;简介啊:${character.note!"没有"}&#09;能力啊:${character.abilities!"没有"}&#09;能力简介啊:${character.ability_notes!"都没能力，哪里有简介"}</pre>
+                </#list>
+            </div>
+        </el-main>
+    </el-container>
+</div>
+
+<script type="text/javascript">
+    var Main = {};
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
+</script>
+</body>
+</html>
